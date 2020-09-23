@@ -14,8 +14,10 @@ $(document).ready(function() {
         var cityHistory = [] 
         //code to append city to search history
         // create and visibly show city search history
-        var recall = $("<button></button>").prepend(cityName)
-        $("#searchHistory").prepend(recall);
+        var newListItem = $("<li></li>");
+        var recall = $("<button></button>").prepend(cityName);
+        $("#searchHistory").prepend(newListItem);
+        newListItem.prepend(recall);
         cityHistory.push(cityName);
         //Storing search history
         for (i = 0; i < cityHistory.length; i++) {
@@ -26,13 +28,20 @@ $(document).ready(function() {
     searchBtn.on("click", function () {
         var cityName = $("#cityInput").val(); 
         
-        //clearing weather data
+        // weather data variables
         var tempMax = "";
         var tempMin = "";
         var humidity = "";
         var windSpeed = "";
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=e8cee38ca68175caca0582fcfd360426"
+        // clearing weather data text content
+        $("#max").empty();
+        $("#min").empty();
+        $("#humidity").empty();
+        $("#windSpeed").empty();
+
         //ajax call for weather data
+        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=e8cee38ca68175caca0582fcfd360426"
+        
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -44,10 +53,10 @@ $(document).ready(function() {
             humidity = response.main.humidity;
             windSpeed = response.wind.speed;
 
-            $("#max").prepend(tempMax);
-            $("#min").prepend(tempMin);
-            $("#humidity").prepend(humidity);
-            $("#windSpeed").prepend(windSpeed);
+            $("#max").prepend(`Max: ${tempMax} C`);
+            $("#min").prepend(`Min: ${tempMin} C`);
+            $("#humidity").prepend(`Humidity: ${humidity}%`);
+            $("#windSpeed").prepend(`Wind Speed: ${windSpeed} km/h`);
            
         });
     });
