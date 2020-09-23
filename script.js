@@ -33,6 +33,7 @@ $(document).ready(function() {
         var tempMin = "";
         var humidity = "";
         var windSpeed = "";
+        var feelsLike = ""
         // clearing weather data text content
         $("#max").empty();
         $("#min").empty();
@@ -48,15 +49,46 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
             // code to add and display the temperature, the humidity, the wind speed, and the UV index
-            tempMax = response.main.temp_max;
-            tempMin = response.main.temp_min;
-            humidity = response.main.humidity;
-            windSpeed = response.wind.speed;
+            tempMax = `Max: ${response.main.temp_max} C  `;
+            tempMin = `Min: ${response.main.temp_min} C  `;
+            humidity = `Humidity: ${response.main.humidity} % `;
+            windSpeed = `Wind Speed: ${response.wind.speed} km/h `;
+            feelsLike = Number(response.main.feels_like);
 
-            $("#max").prepend(`Max: ${tempMax} C`);
-            $("#min").prepend(`Min: ${tempMin} C`);
-            $("#humidity").prepend(`Humidity: ${humidity}%`);
-            $("#windSpeed").prepend(`Wind Speed: ${windSpeed} km/h`);
+            //feels_Like conversion to an integer
+
+            $("#max").prepend(tempMax);
+            $("#min").prepend(tempMin);
+            $("#humidity").prepend(humidity);
+            $("#windSpeed").prepend(windSpeed);
+            //value comparisons inside if conditions using number thresholds
+
+            // temperature below 15
+            if (feelsLike < 15) {
+                //code to display symbol
+                $("#max").append("<i class='far fa-snowflake'></i>");
+            // temperature between 16 and 25
+            } else if (feelsLike < 25) {
+                
+                $("#max").append("<i class='fas fa-temperature-low'></i>");
+            } else if (feelsLike <= 32) {
+                
+                $("#max").append("<i class='fas fa-temperature-high'></i>");
+            } else if (feelsLike > 32) {
+                
+                $("#max").append("<i class='far fa-sun'></i>");
+            }
+            
+            // use the feels like paramter for the different conditions temperature 15.1 to 25, 25 to 32 and above 33.
+
+            // humidity conditions, 25%, 25 to 50% 50 to 75% and 76%+ 
+            // symbol for clear represents 0 to 33%, cloudy 34 to 68% and overcast = 70%+
+
+            // windSpeed symbol, below 5, 5.1 to 15, 15+
+
+
+
+            
            
         });
     });
