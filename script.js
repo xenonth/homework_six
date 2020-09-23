@@ -1,3 +1,5 @@
+// To do in the readme explain why you have symbols by each weather element and not a pseudolibrary multiconditional if statement partially to keep code clean, partially to avoid delay and wanting to deliver an MVP.
+
 $(document).ready(function() {
     for (i = 0; i < 3 ; i++) {
     
@@ -49,10 +51,10 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
             // code to add and display the temperature, the humidity, the wind speed, and the UV index
-            tempMax = `Max: ${response.main.temp_max} C  `;
-            tempMin = `Min: ${response.main.temp_min} C  `;
-            humidity = `Humidity: ${response.main.humidity} % `;
-            windSpeed = `Wind Speed: ${response.wind.speed} km/h `;
+            tempMax = `Max: ${response.main.temp_max} C`;
+            tempMin = `Min: ${response.main.temp_min} C`;
+            humidity = `Humidity: ${response.main.humidity} %`;
+            windSpeed = `Wind Speed: ${response.wind.speed} km/h`;
             feelsLike = Number(response.main.feels_like);
 
             //feels_Like conversion to an integer
@@ -62,27 +64,54 @@ $(document).ready(function() {
             $("#humidity").prepend(humidity);
             $("#windSpeed").prepend(windSpeed);
             //value comparisons inside if conditions using number thresholds
-
-            // temperature below 15
+            // use the feels like paramter for the different conditions temperature 15.1 to 25, 25 to 32 and above 33.
+            // temperature below 15 has a snowflake symbol
             if (feelsLike < 15) {
                 //code to display symbol
                 $("#max").append("<i class='far fa-snowflake'></i>");
-            // temperature between 16 and 25
+            // temperature between 16 and 25 has a thermometer low symbol
             } else if (feelsLike < 25) {
                 
                 $("#max").append("<i class='fas fa-temperature-low'></i>");
+
             } else if (feelsLike <= 32) {
-                
+                // temperature between 25 and 32 has a thermometer low symbol
                 $("#max").append("<i class='fas fa-temperature-high'></i>");
+
             } else if (feelsLike > 32) {
-                
+                // temperature above 32 has a sun heat display.
                 $("#max").append("<i class='far fa-sun'></i>");
             }
-            
-            // use the feels like paramter for the different conditions temperature 15.1 to 25, 25 to 32 and above 33.
 
             // humidity conditions, 25%, 25 to 50% 50 to 75% and 76%+ 
+            if (response.main.humidity <= 33) {
+                //code to display symbol
+                $("#humidity").append("<i class='fas fa-tint-slash'></i>")
+                
+            // humidity below 67%
+            } else if (response.main.humidity <= 67) {
+                
+                $("#humidity").append("<i class='fas fa-tint'></i>");
+                
+            } else if (humidity <= 100) {
+                // umbrella symbol for 68 to 100% humidity
+                $("#humidity").append("<i class='fas fa-umbrella'></i>");
+            }
+
             // symbol for clear represents 0 to 33%, cloudy 34 to 68% and overcast = 70%+
+            if (response.main.humidity <= 33) {
+                //code to display symbol
+                $("#humidity").append("<i class='fas fa-sun'></i>")
+                
+            // humidity below 67%
+            } else if (response.main.humidity <= 67) {
+                
+                $("#humidity").append("<i class='fas fa-cloud-sun'></i>");
+                
+            } else if (humidity <= 100) {
+                // umbrella symbol for 68 to 100% humidity
+                $("#humidity").append("<i class='fas fa-cloud'></i>");
+            }
 
             // windSpeed symbol, below 5, 5.1 to 15, 15+
 
