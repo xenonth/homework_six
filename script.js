@@ -114,12 +114,103 @@ $(document).ready(function() {
             }
 
             // windSpeed symbol, below 5, 5.1 to 15, 15+
-
-
-
-            
-           
         });
+    });
+    //same as above except for the other weather days
+    searchBtn.on("click", function () {
+        var cityName = $("#cityInput").val();
+        
+        //ajax call for weather data
+        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=e8cee38ca68175caca0582fcfd360426"
+        
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+        }).then(function(response) {
+             console.log(response);
+        
+            // weather data variables
+            var tomorrowTempAvg = "";
+            var tomorrowHumidity = "";
+            var tomorrowWindSpeed = "";
+            var tomorrowFeelsLike = "";
+
+            //clearing weather data text content
+            $("#tomorrowMax").empty();
+            $("#tomorrowMin").empty();
+            $("#tomorrowHumidity").empty();
+            $("#tomorrowWindSpeed").empty();
+
+            tomorrowTempAvg = `Avg: ${response.list[10].main.temp} C`;
+            tomorrowHumidity = `Humidity: ${response.list[10].main.humidity} %`;
+            tomorrowWindSpeed = `Wind Speed: ${response.list[10].wind.speed} km/h`;
+            tomorrowFeelsLike = Number(response.list[10].main.feels_like);
+                
+            //feels_Like conversion to an integer
+            //adding values to html   
+            $("#tomorrowAvg").prepend(tomorrowTempAvg);
+            $("#tomorrowHumidity").prepend(tomorrowHumidity);
+            $("#tomorrowWindSpeed").prepend(tomorrowWindSpeed);
+
+
+            //Day Two weather Data
+            var dayTwoTempAvg = "";
+            var dayTwoHumidity = "";
+            var dayTwoWindSpeed = "";
+            var dayTwoFeelsLike = "";
+            
+            // code to add and disp
+            // code to add and display the temperature, the humidity, the wind speed, and the UV index
+            dayTwoTempAvg = `Avg: ${response.list[18].main.temp} C`;
+            dayTwoHumidity = `Humidity: ${response.list[18].main.humidity} %`;
+            dayTwoWindSpeed = `Wind Speed: ${response.list[18].wind.speed} km/h`;
+            dayTwoFeelsLike = Number(response.list[18].main.feels_like);
+                
+            //feels_Like conversion to an integer
+            //adding values to html   
+            $("#dayTwoAvg").prepend(dayTwoTempAvg);
+            $("#dayTwoHumidity").prepend(dayTwoHumidity);
+            $("#dayTwoWindSpeed").prepend(dayTwoWindSpeed);
+
+            //Day three weather data
+            var dayThreeTempAvg = "";
+            var dayThreeHumidity = "";
+            var dayThreeWindSpeed = "";
+            var dayThreeFeelsLike = "";
+            
+            // code to add and disp
+            // code to add and display the temperature, the humidity, the wind speed, and the UV index
+            dayThreeTempAvg = `Avg: ${response.list[26].main.temp} C`;
+            dayThreeHumidity = `Humidity: ${response.list[26].main.humidity} %`;
+            dayThreeWindSpeed = `Wind Speed: ${response.list[26].wind.speed} km/h`;
+            dayThreeFeelsLike = Number(response.list[26].main.feels_like);
+                
+            //feels_Like conversion to an integer
+            //adding values to html   
+            $("#dayThreeAvg").prepend(dayThreeTempAvg);
+            $("#dayThreeHumidity").prepend(dayThreeHumidity);
+            $("#dayThreeWindSpeed").prepend(dayThreeWindSpeed);
+
+            //Day four weather data
+            var dayFourTempAvg = "";
+            var dayFourHumidity = "";
+            var dayFourWindSpeed = "";
+            var dayFourFeelsLike = "";
+            
+            // code to add and disp
+            // code to add and display the temperature, the humidity, the wind speed, and the UV index
+            dayFourTempAvg = `Avg: ${response.list[34].main.temp} C`;
+            dayFourHumidity = `Humidity: ${response.list[34].main.humidity} %`;
+            dayFourWindSpeed = `Wind Speed: ${response.list[34].wind.speed} km/h`;
+            dayFourFeelsLike = Number(response.list[34].main.feels_like);
+            
+            //feels_Like conversion to an integer
+            //adding values to html   
+            $("#dayFourAvg").prepend(dayFourTempAvg);
+            $("#dayFourHumidity").prepend(dayFourHumidity);
+            $("#dayFourWindSpeed").prepend(dayFourWindSpeed);
+        })
+
     });
 
 });
