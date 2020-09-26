@@ -1,16 +1,18 @@
 // To do in the readme explain why you have symbols by each weather element and not a pseudolibrary multiconditional if statement partially to keep code clean, partially to avoid delay and wanting to deliver an MVP.
 
 $(document).ready(function() {
-    for (i = 0; i < 3 ; i++) {
+
+    // The following was developing code to reload and recall search history saved to local storage but ran out of time to complete.
+    ///for (i = 0; i < 3 ; i++) {
     
-        $("#" + i).val(localStorage.getItem(`city${i}`));
-        localStorage.removeItem(`city${i}`);
-        var newListItem = $("<li></li>");
-        var recall = $("<button></button>").prepend(`city${i}`);
-        $("#searchHistory").prepend(newListItem);
-        newListItem.prepend(recall);
-        cityHistory.push(cityName);
-        };
+        //$("#" + i).val(localStorage.getItem(`city${i}`));
+        //localStorage.removeItem(`city${i}`);
+        ///var newListItem = $("<li></li>");
+        ///var recall = $("<button></button>").prepend(`city${i}`);
+        //$("#searchHistory").prepend(newListItem);
+       // newListItem.prepend(recall);
+        //cityHistory.push(cityName);
+        //};
     //setup for query
     //code to add a button element to left hand side of screen
     
