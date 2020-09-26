@@ -1,7 +1,5 @@
 // To do in the readme explain why you have symbols by each weather element and not a pseudolibrary multiconditional if statement partially to keep code clean, partially to avoid delay and wanting to deliver an MVP.
 
-$(document).ready(function() {
-
     // The following was developing code to reload and recall search history saved to local storage but ran out of time to complete.
     ///for (i = 0; i < 3 ; i++) {
     
@@ -238,5 +236,3 @@ $(document).ready(function() {
         })
 
     });
-
-});
