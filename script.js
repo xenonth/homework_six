@@ -5,26 +5,38 @@ $(document).ready(function() {
     
         $("#" + i).val(localStorage.getItem(`city${i}`));
         localStorage.removeItem(`city${i}`);
+        var newListItem = $("<li></li>");
+        var recall = $("<button></button>").prepend(`city${i}`);
+        $("#searchHistory").prepend(newListItem);
+        newListItem.prepend(recall);
+        cityHistory.push(cityName);
         };
     //setup for query
     //code to add a button element to left hand side of screen
     
-     
+    var count = 0;
     var  searchBtn = $("#search");
     searchBtn.on("click", function () {
+        count++;
         var cityName = $("#cityInput").val();
         var cityHistory = [] 
         //code to append city to search history
         // create and visibly show city search history
         var newListItem = $("<li></li>");
         var recall = $("<button></button>").prepend(cityName);
+        newListItem.attr('id', cityName);
         $("#searchHistory").prepend(newListItem);
         newListItem.prepend(recall);
         cityHistory.push(cityName);
-        //Storing search history
-        for (i = 0; i < cityHistory.length; i++) {
-            localStorage.setItem(`city${i}`, cityName);
-        }
+
+    //Storing search history
+    for (i = 0; i < cityHistory.length; i++) {
+        localStorage.setItem(`city${i}`, cityName);
+    }
+        
+    //adding recall capability 
+
+
     });
 
     searchBtn.on("click", function () {
@@ -63,6 +75,18 @@ $(document).ready(function() {
             $("#min").prepend(tempMin);
             $("#humidity").prepend(humidity);
             $("#windSpeed").prepend(windSpeed);
+            
+            //calling uv index data setup
+            var uvLong = response.coord.lon; 
+            var uvLat = response.coord.lat;
+            var queryURLuv = "http://api.openweathermap.org/data/2.5/uvi?lat=" + uvLat + "&lon=" + uvLong + "&appid=e8cee38ca68175caca0582fcfd36042";
+            $.ajax({
+                url: queryURLuv,
+                method: "GET",
+            }).then(function(response) {
+                console.log(response);
+            })
+
             //value comparisons inside if conditions using number thresholds
             // use the feels like paramter for the different conditions temperature 15.1 to 25, 25 to 32 and above 33.
             // temperature below 15 has a snowflake symbol
