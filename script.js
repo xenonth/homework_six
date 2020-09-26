@@ -16,12 +16,12 @@ $(document).ready(function() {
     //setup for query
     //code to add a button element to left hand side of screen
     
-    var count = 0;
+    //var count = 0;
     var  searchBtn = $("#search");
     searchBtn.on("click", function () {
-        count++;
+        //count++;
         var cityName = $("#cityInput").val();
-        var cityHistory = [] 
+        //var cityHistory = [] 
         //code to append city to search history
         // create and visibly show city search history
         var newListItem = $("<li></li>");
@@ -29,12 +29,12 @@ $(document).ready(function() {
         newListItem.attr('id', cityName);
         $("#searchHistory").prepend(newListItem);
         newListItem.prepend(recall);
-        cityHistory.push(cityName);
+        //cityHistory.push(cityName);
 
     //Storing search history
-    for (i = 0; i < cityHistory.length; i++) {
-        localStorage.setItem(`city${i}`, cityName);
-    }
+    //for (i = 0; i < cityHistory.length; i++) {
+    //    localStorage.setItem(`city${i}`, cityName);
+    //}
         
     //adding recall capability 
 
