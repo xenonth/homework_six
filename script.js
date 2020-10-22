@@ -77,15 +77,7 @@
             $("#windSpeed").prepend(windSpeed);
             
             //calling uv index data setup
-            var uvLong = response.coord.lon; 
-            var uvLat = response.coord.lat;
-            var queryURLuv = "http://api.openweathermap.org/data/2.5/uvi?lat=" + uvLat + "&lon=" + uvLong + "&appid=e8cee38ca68175caca0582fcfd36042";
-            $.ajax({
-                url: queryURLuv,
-                method: "GET",
-            }).then(function(response) {
-                console.log(response);
-            })
+
 
             //value comparisons inside if conditions using number thresholds
             // use the feels like paramter for the different conditions temperature 15.1 to 25, 25 to 32 and above 33.
