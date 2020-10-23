@@ -55,7 +55,7 @@
         $("#windSpeed").empty();
 
         //ajax call for weather data
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=e8cee38ca68175caca0582fcfd360426"
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=e8cee38ca68175caca0582fcfd360426"
         
         $.ajax({
             url: queryURL,
@@ -137,7 +137,7 @@
         var cityName = $("#cityInput").val();
         
         //ajax call for weather data
-        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=e8cee38ca68175caca0582fcfd360426"
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=e8cee38ca68175caca0582fcfd360426"
         
         $.ajax({
             url: queryURL,
